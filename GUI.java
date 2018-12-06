@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * GUI and initialises all other components.
  * 
  */
-public class GUI extends JFrame{
+public class GUI extends JFrame {
     static final long serialVersionUID = 1;
     private JFrame frame;
     private JFrame difficultyFrame;
@@ -56,7 +56,7 @@ public class GUI extends JFrame{
     public GUI() {
         game = new Game();
         running = true;
-      //  setDifficulty(3);//THIS IS AN ISSUE BEING HERE
+        // setDifficulty(3);//THIS IS AN ISSUE BEING HERE
         startGame();
         new Thread(new Runnable() {
             public void run() {
@@ -79,8 +79,7 @@ public class GUI extends JFrame{
                     }
                     if (game.win() == 2) {
                         checkLevel();
-                       
-                        
+
                         /**
                          * if(oldLevel > currentLevel) //lost a round { for (JButton button :
                          * buttonList.values()) { Color back = button.getBackground();
@@ -107,48 +106,42 @@ public class GUI extends JFrame{
         }).start();
     }
 
-    private void checkLevel()
-    {
+    private void checkLevel() {
         int repeat = 5;
-        if(game.returnlevel() < oldLevel)
-        {
-            for(int i = 0; i < repeat; i++)
-            {
-            level.getParent().setBackground(Color.RED);
-            try {
-                Thread.sleep(150);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
+        if (game.returnlevel() < oldLevel) {
+            for (int i = 0; i < repeat; i++) {
+                level.getParent().setBackground(Color.RED);
+                try {
+                    Thread.sleep(150);
+                } catch (InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                }
+                level.getParent().setBackground(Color.WHITE);
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                }
             }
-            level.getParent().setBackground(Color.WHITE);
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
+        } else if (game.returnlevel() > oldLevel) {
+            for (int i = 0; i < repeat; i++) {
+                level.getParent().setBackground(Color.GREEN);
+                try {
+                    Thread.sleep(150);
+                } catch (InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                }
+                level.getParent().setBackground(Color.WHITE);
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                }
             }
+
         }
+        oldLevel = game.returnlevel();
     }
-        else if(game.returnlevel() > oldLevel)
-        {
-            for(int i = 0; i < repeat; i++)
-            {
-            level.getParent().setBackground(Color.GREEN);
-            try {
-                Thread.sleep(150);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-            level.getParent().setBackground(Color.WHITE);
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-        }
-        
-    }
-    oldLevel = game.returnlevel();
-}
 
     /**
      * Creates a pop up dialog box to let the user know that they lost Removes all
@@ -343,12 +336,10 @@ public class GUI extends JFrame{
             }
         };
         // button 1
-        if(difficulty == 0)
-        {
-        start = new JButton("New Game | Select a difficulty");
-        }
-        else{
-            start = new JButton("New Game | Difficulty: "+difficulty);
+        if (difficulty == 0) {
+            start = new JButton("New Game | Select a difficulty");
+        } else {
+            start = new JButton("New Game | Difficulty: " + difficulty);
         }
         start.addActionListener(game);
         p.add(start);
@@ -373,9 +364,8 @@ public class GUI extends JFrame{
         JButton quit = new JButton("QUIT");
         quit.addActionListener(quitListener);
         p.add(quit);
-        if(difficulty == 0)
-        {
-        start.setEnabled(false);
+        if (difficulty == 0) {
+            start.setEnabled(false);
         }
         frame.setLocation(500, 400);
         frame.pack();
@@ -398,31 +388,27 @@ public class GUI extends JFrame{
         makeFrame();
     }
 
-    private void restart()
-    {
+    private void restart() {
         frame.removeAll();
         frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
-        startGame();   
+        startGame();
     }
 
     /**
      * Removes all frames and closes down the game
      */
     public void quit() {
-        if(frame != null)
-        {
-        frame.dispose();
-        frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+        if (frame != null) {
+            frame.dispose();
+            frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
         }
-        if(gameFrame != null)
-        {
-        gameFrame.dispose();
-        gameFrame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+        if (gameFrame != null) {
+            gameFrame.dispose();
+            gameFrame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
         }
-        if(difficultyFrame != null)
-        {
-        difficultyFrame.dispose();
-        difficultyFrame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+        if (difficultyFrame != null) {
+            difficultyFrame.dispose();
+            difficultyFrame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
         }
         return;
     }
@@ -432,7 +418,7 @@ public class GUI extends JFrame{
      */
     private void makeFrame() {
         // creates the frame for the grid
-       gameFrame = new JFrame("Remember Remember");
+        gameFrame = new JFrame("Remember Remember");
 
         // Creates the panel used for 4 JButtons that will flash
         JPanel p = new JPanel(new GridLayout(1, 3));
@@ -460,10 +446,10 @@ public class GUI extends JFrame{
         contentPane.add(p, BorderLayout.CENTER);
 
         makeMenu(gameFrame);
-        
+
         // button 1
         one = new JButton();
-       // one.setContentAreaFilled(false);
+        // one.setContentAreaFilled(false);
         // one.setOpaque(true);
         // one.setColor(new Color(200,0,100));
         one.setBackground(Color.WHITE);
@@ -480,7 +466,7 @@ public class GUI extends JFrame{
 
         // button 2
         two = new JButton();
-        //two.setContentAreaFilled(false);
+        // two.setContentAreaFilled(false);
         two.setBackground(Color.WHITE);
         two.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -495,7 +481,7 @@ public class GUI extends JFrame{
 
         // button 3
         three = new JButton();
-        //three.setContentAreaFilled(false);
+        // three.setContentAreaFilled(false);
         three.setBackground(Color.WHITE);
         three.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -510,7 +496,7 @@ public class GUI extends JFrame{
         if (difficulty == 2 || difficulty == 3 || difficulty == 4) {
             // button 4
             four = new JButton();
-          //  four.setContentAreaFilled(false);
+            // four.setContentAreaFilled(false);
             four.setBackground(Color.WHITE);
             four.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -524,7 +510,7 @@ public class GUI extends JFrame{
             p.add(four);
             // button 5
             five = new JButton();
-            //five.setContentAreaFilled(false);
+            // five.setContentAreaFilled(false);
             five.setBackground(Color.WHITE);
             five.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -538,7 +524,7 @@ public class GUI extends JFrame{
             p.add(five);
             // button 6
             six = new JButton();
-            //six.setContentAreaFilled(false);
+            // six.setContentAreaFilled(false);
             six.setBackground(Color.WHITE);
             six.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -555,7 +541,7 @@ public class GUI extends JFrame{
         if (difficulty == 3 || difficulty == 4) {
             // button 7
             seven = new JButton();
-           // seven.setContentAreaFilled(false);
+            // seven.setContentAreaFilled(false);
             seven.setBackground(Color.WHITE);
             seven.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -569,7 +555,7 @@ public class GUI extends JFrame{
             p.add(seven);
             // button 8
             eight = new JButton();
-           // eight.setContentAreaFilled(false);
+            // eight.setContentAreaFilled(false);
             eight.setBackground(Color.WHITE);
             eight.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -583,7 +569,7 @@ public class GUI extends JFrame{
             p.add(eight);
             // button 9
             nine = new JButton();
-           // nine.setContentAreaFilled(false);
+            // nine.setContentAreaFilled(false);
             nine.setBackground(Color.WHITE);
             nine.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -599,7 +585,7 @@ public class GUI extends JFrame{
         if (difficulty == 4) {
             // button 10
             ten = new JButton();
-         //   ten.setContentAreaFilled(false);
+            // ten.setContentAreaFilled(false);
             ten.setBackground(Color.WHITE);
             ten.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -613,7 +599,7 @@ public class GUI extends JFrame{
             p.add(ten);
             // button 11
             eleven = new JButton();
-         //   eleven.setContentAreaFilled(false);
+            // eleven.setContentAreaFilled(false);
             eleven.setBackground(Color.WHITE);
             eleven.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -627,7 +613,7 @@ public class GUI extends JFrame{
             p.add(eleven);
             // button 7
             twelve = new JButton();
-         //   twelve.setContentAreaFilled(false);
+            // twelve.setContentAreaFilled(false);
             twelve.setBackground(Color.WHITE);
             twelve.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -673,13 +659,13 @@ public class GUI extends JFrame{
             }
         });
         pane.add(quit);
-
+        gameFrame.setLocation(frame.getX(), frame.getY());
         gameFrame.setBackground(Color.BLUE);
         gameFrame.pack();
         gameFrame.setSize(350, (150 * difficulty));
         gameFrame.setVisible(true);
-        gameFrame.setDefaultCloseOperation(EXIT_ON_CLOSE); 
-        //gameFrame = new GameFrame();
+        gameFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        // gameFrame = new GameFrame();
     }
 
     private void makeDifficultyFrame() {
@@ -761,14 +747,12 @@ public class GUI extends JFrame{
             for (JButton button : buttonList.values()) {
                 button.setEnabled(false);
             }
-        }
-            else{
-                for(JButton button : buttonList.values())
-                {
-                    button.setEnabled(true);
-                }
+        } else {
+            for (JButton button : buttonList.values()) {
+                button.setEnabled(true);
             }
         }
+    }
 
     /**
      * Adds the buttons into a hashMap with a number reference
@@ -811,11 +795,11 @@ public class GUI extends JFrame{
                     // retrieve the JButton in accordance with the number in the HashMap
                     JButton currentButton = buttonList.get(Integer);
                     // assign the colour of the current button to a runningiable called back
-                   // currentButton.setOpaque(true);
+                    // currentButton.setOpaque(true);
                     Color newColor = Color.RED.brighter().brighter();
-                   currentButton.setBackground(newColor);
+                    currentButton.setBackground(newColor);
                     // currentButton.setBorder(new LineBorder(Color.BLACK, 10));
-                    //currentButton.setContentAreaFilled(false);
+                    // currentButton.setContentAreaFilled(false);
                     // refresh
                     repaint();
                     // sleep for 1/2 sec
@@ -827,7 +811,7 @@ public class GUI extends JFrame{
                     // set colour to original colour
                     // currentButton.setBorder(new LineBorder(Color.BLACK, 1));
                     currentButton.setBackground(Color.WHITE);
-                  // currentButton.setContentAreaFilled(true);
+                    // currentButton.setContentAreaFilled(true);
                     // update
                     repaint();
                     // sleep for 0.3 ms to give appearance of blinking if same button comes on twice
@@ -877,10 +861,10 @@ public class GUI extends JFrame{
                 // currentButton.setBorder(new LineBorder(Color.BLACK, 0));
                 currentButton.setBackground(Color.WHITE);
                 // update
-                repaint();               
+                repaint();
             }
-            
+
         }).start();
-        currentButton.setEnabled(true); 
+        currentButton.setEnabled(true);
     }
 }
