@@ -1,7 +1,7 @@
 import java.util.*;
 
 /**
- * Write a description of class Game here.
+ * Logic for the game, sequences, levels, comparing inputs and sequences.
  * 
  */
 public class Game {
@@ -15,24 +15,28 @@ public class Game {
     private int difficulty;
 
     /**
-     * Constructor for objects of class Game
+     * Creates a newGame.
      */
     public Game() {
         newGame();
     }
-
+    /**
+    *Returns the current difficulty of the game
+     */
     public int getDifficulty() {
         return difficulty;
     }
-
+    /**
+    sets the difficulty to the player chosen level
+     */
     public void setDifficulty(int d) {
         difficulty = d;
     }
 
     /**
-     * clear the current challenge sequence and previous player input Generates
-     * random numbers from 1-4 and puts them in random order incrementing the
-     * sequence by 1 each round.
+     * clears the challenge, clears the player inputs, creates a random challenge by choosing a random button
+     using the difficulty to ensure new challenge is within the limits of the difficulty. 
+     Repeats for each blink required until challenge is completed.
      */
     public void challenge() {
         challenge.clear();
@@ -44,44 +48,43 @@ public class Game {
     }
 
     /**
-     * Checks to see if the player has won
+     * Player win checker,
      * 
-     * @return 0 if lost, 1 if won, and 2 if no boundaries have been met
+     * returns 0 if they have lost, 1 if they have won.
      */
     public int win() {
         if (level < 0) {
             return 0;
-        } else if (level == 2) {
+        } else if (level == 5) {
             return 1;
         } else {
             return 2;
         }
     }
-
+    /**
+    Sets the current level of the game
+     */
     public void setLevel(int i) {
         level = i;
     }
 
     /**
-     * Returns the original challenge sequence
-     * 
-     * @return the ArrayList challenge sequence
+     * Returns the challenge sequence
+     *
      */
     public ArrayList<Integer> returnOriginalchallenge() {
         return challenge;
     }
 
     /**
-     * Add an integer to the playerInput arrayList
-     * 
-     * @param an int to add to the playerInput arrayList
+     * Adds the chosen button to the players sequence, to compare to the challenged array.
      */
     public void playerchallenge(int i) {
         playerInput.add(i);
     }
 
     /**
-     * Sets the variables back to default
+     * Sets level back to 0.
      */
     public void newGame() {
         blinks();
@@ -91,8 +94,6 @@ public class Game {
     /**
      * Checks to see the player has finished entering the challenge and calls
      * another method to see if they have leveld
-     * 
-     * @return true if finished, false if not finished
      */
     public boolean finished() {
         if (playerInput.size() == challenge.size()) {
@@ -106,17 +107,13 @@ public class Game {
     /**
      * Checks to see the player has entered the challenge correctly
      * 
-     * @return true if correct, and false if incorrect
      */
     private boolean compareList() {
         return challenge.toString().contentEquals(playerInput.toString()) ? true : false;
     }
 
     /**
-     * If the player has gotten the challenge right, add one to the level, and call
-     * the other methods to make a new challenge and to check if the blinks needs to
-     * be upped. Else, take one away from the level and check if the blinks needs to
-     * be lowered.
+     * Increases the level if the player was correct, decrease level if they got it wrong.
      */
     private void level() {
         if (compareList()) {
@@ -129,19 +126,15 @@ public class Game {
         }
     }
 
-    /**
-     * Returns the current level
-     * 
-     * @return integer level
+    /*
+    *returns current level
      */
     public int returnlevel() {
         return level;
     }
 
     /**
-     * if level is a certain number, change the blinks to reflect it. If it is lower
-     * than 3, set the blinks to 3 if it is 3, set blinks to 4 if level is 6, set
-     * blinks to 5 if level is 9, set blinks to 6
+     * Switch amount of blinks based on level, blinks increment amount and default blinks are based on difficulty.
      */
     private void blinks() {
         switch (difficulty) {
