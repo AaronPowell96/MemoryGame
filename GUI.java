@@ -36,7 +36,8 @@ public class GUI extends JFrame {
     private int oldLevel;
     private boolean running;
     public int difficulty = 0;
-
+    public Color purple = new Color(84, 46, 145);
+    public Color yellow = new Color(253, 220, 6);
     /**
      * Constructor for objects of class GUI also creates a Game object that handles
      * the game logic creates another thread to handle scoring as to not halt the
@@ -64,10 +65,10 @@ public class GUI extends JFrame {
 
                     level.setText("Current Level: " + game.returnlevel());
                      level.setOpaque(true);
-                    level.setBackground(Color.YELLOW);
+                    level.setBackground(yellow);
                     difficultyLabel.setOpaque(true);
                     difficultyLabel.setText("Difficulty: " + difficulty);
-                    difficultyLabel.setBackground(Color.YELLOW);
+                    difficultyLabel.setBackground(yellow);
                     if (game.win() == 0) {
                         // if level below zero, tell user they lost
                         game.setLevel(0);
@@ -92,7 +93,7 @@ public class GUI extends JFrame {
                          * = oldLevel--; } if(oldLevel < currentLevel) //win a round { for (JButton
                          * button : buttonList.values()) { Color back = button.getBackground();
                          * button.setEnabled(false); button.setOpaque(true);
-                         * button.setBackground(Color.YELLOW); try { Thread.sleep(300); //1000
+                         * button.setBackground(yellow); try { Thread.sleep(300); //1000
                          * milliseconds is one second. } catch(InterruptedException ex) {
                          * Thread.currentThread().interrupt(); } button.setBackground(back); } setLevel
                          * = oldLevel++; }
@@ -112,13 +113,13 @@ public class GUI extends JFrame {
         int repeat = 5;
         if (game.returnlevel() < oldLevel) {
             for (int i = 0; i < repeat; i++) {
-                level.getParent().setBackground(Color.MAGENTA);
+                level.getParent().setBackground(purple);
                 try {
                     Thread.sleep(150);
                 } catch (InterruptedException ex) {
                     Thread.currentThread().interrupt();
                 }
-                level.getParent().setBackground(Color.YELLOW);
+                level.getParent().setBackground(yellow);
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException ex) {
@@ -133,7 +134,7 @@ public class GUI extends JFrame {
                 } catch (InterruptedException ex) {
                     Thread.currentThread().interrupt();
                 }
-                level.getParent().setBackground(Color.YELLOW);
+                level.getParent().setBackground(yellow);
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException ex) {
@@ -165,7 +166,7 @@ public class GUI extends JFrame {
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
-            button.setBackground(Color.BLACK);
+            button.setBackground(Color.RED);
             repaint();
         }
 
@@ -179,7 +180,7 @@ public class GUI extends JFrame {
         for (JButton button : buttonList.values()) {
             button.setEnabled(false);
             button.setOpaque(true);
-            button.setBackground(Color.YELLOW);
+            button.setBackground(yellow);
             repaint();
         }
         int option = endGameOptions("You've Lost", "LOSER");
@@ -205,7 +206,7 @@ public class GUI extends JFrame {
         for (JButton button : buttonList.values()) {
             button.setEnabled(false);
             button.setOpaque(true);
-            button.setBackground(Color.MAGENTA);
+            button.setBackground(purple);
             repaint();
             try {
                 Thread.sleep(50);
@@ -223,7 +224,7 @@ public class GUI extends JFrame {
         for (JButton button : buttonList.values()) {
             button.setEnabled(false);
             button.setOpaque(true);
-            button.setBackground(Color.YELLOW);
+            button.setBackground(yellow);
             repaint();
         }
         int option = endGameOptions("You've Won!", "WINNER");
@@ -247,7 +248,6 @@ public class GUI extends JFrame {
                                                                                                       // custom Icon
                 options, // the titles of buttons
                 options[2]);// default button title
-
         return n;
     }
 
@@ -255,6 +255,7 @@ public class GUI extends JFrame {
      * Creates a dialog box about the game
      */
     private void about(JFrame frame) {
+        frame.setBackground(yellow);
         JOptionPane.showMessageDialog(frame, "Memory Game\n", "About Memory Game", JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -262,6 +263,7 @@ public class GUI extends JFrame {
      * Creates a dialog box to give the user help about the game
      */
     private void help(JFrame frame) {
+        frame.setBackground(yellow);
         JOptionPane.showMessageDialog(frame, "Repeat the challenge shown to you \n Click play to advance", "Help",
                 JOptionPane.INFORMATION_MESSAGE);
     }
@@ -273,8 +275,9 @@ public class GUI extends JFrame {
      */
     public void makeMenu(JFrame frame) {
         JMenuBar menubar = new JMenuBar();
+        menubar.setBackground(yellow);
         frame.setJMenuBar(menubar);
-
+        frame.setBackground(yellow);
         // create the File menu
         JMenu fileMenu = new JMenu("File");
         menubar.add(fileMenu);
@@ -298,6 +301,7 @@ public class GUI extends JFrame {
 
         // create the File menu
         JMenu helpMenu = new JMenu("Help");
+        helpMenu.setBackground(yellow);
         menubar.add(helpMenu);
 
         JMenuItem about = new JMenuItem("About");
@@ -323,6 +327,7 @@ public class GUI extends JFrame {
     private void startGame() {
         game.newGame();
         frame = new JFrame("Remember Remember - Main Menu");
+        frame.setBackground(yellow);
         // Creates the panel for the 3 JButtons
         JPanel p = new JPanel(new GridLayout(1, 3));
         Container contentPane = frame.getContentPane();
@@ -343,6 +348,8 @@ public class GUI extends JFrame {
         } else {
             start = new JButton("New Game | Difficulty: " + difficulty);
         }
+        start.setBackground(purple);
+        start.setForeground(Color.WHITE);
         start.addActionListener(game);
         p.add(start);
 
@@ -355,6 +362,8 @@ public class GUI extends JFrame {
         // button 2
         JButton chooseDifficulty = new JButton("Set Difficulty");
         chooseDifficulty.addActionListener(diffListener);
+        chooseDifficulty.setForeground(Color.WHITE);
+        chooseDifficulty.setBackground(purple);
         p.add(chooseDifficulty);
 
         ActionListener quitListener = new ActionListener() {
@@ -365,6 +374,8 @@ public class GUI extends JFrame {
         // button 3
         JButton quit = new JButton("QUIT");
         quit.addActionListener(quitListener);
+        quit.setBackground(purple);
+        quit.setForeground(Color.WHITE);
         p.add(quit);
         if (difficulty == 0) {
             start.setEnabled(false);
@@ -434,9 +445,14 @@ public class GUI extends JFrame {
         // Creates the panel used for 2 JButtons for options
         JPanel pane = new JPanel(new GridLayout(1, 2));
         Container contentPane = gameFrame.getContentPane();
+        pane.setOpaque(true);
+        pane.setBackground(yellow);
+        contentPane.setBackground(yellow);
         // Creates a container
         contentPane.setLayout(new BorderLayout());
         JPanel container = new JPanel(new GridLayout(1, 1));
+        container.setOpaque(true);
+        container.setBackground(yellow);
         container.add(level);
         container.add(difficultyLabel);
         // adds the level JLabel to the content pane
@@ -608,7 +624,7 @@ public class GUI extends JFrame {
 
         // disable all the buttons in the buttonList
         for (JButton button : buttonList.values()) {
-            button.setBackground(Color.YELLOW);
+            button.setBackground(yellow);
             button.setEnabled(false);
         }
 
@@ -617,7 +633,8 @@ public class GUI extends JFrame {
 
         // JButton called play
         play = new JButton("Play");
-
+        play.setOpaque(true);
+        play.setBackground(yellow);
         play.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // initialse the random challenge in the game class
@@ -629,6 +646,8 @@ public class GUI extends JFrame {
         pane.add(play);
 
         JButton quit = new JButton("Quit");
+        quit.setOpaque(true);
+        quit.setBackground(yellow);
         quit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 quit();
@@ -636,7 +655,7 @@ public class GUI extends JFrame {
         });
         pane.add(quit);
         gameFrame.setLocation(frame.getX(), frame.getY());
-        gameFrame.setBackground(Color.BLUE);
+        gameFrame.setBackground(yellow);
         gameFrame.pack();
         gameFrame.setSize(350, (150 * difficulty));
         gameFrame.setVisible(true);
@@ -652,8 +671,9 @@ public class GUI extends JFrame {
         // Adds the JPanel into the content pane
 
         difficultyFrame = new JFrame("Choose Difficulty");
-
+        difficultyFrame.setBackground(yellow);
         Container contentPane = difficultyFrame.getContentPane();
+        contentPane.setBackground(yellow);
         contentPane.setLayout(new BorderLayout());
         // Adds the JPanel to the content Pane
 
@@ -669,6 +689,8 @@ public class GUI extends JFrame {
         };
         // button 1
         JButton one = new JButton("1");
+        one.setOpaque(true);
+        one.setBackground(yellow);
         one.addActionListener(oneListener);
         p.add(one);
 
@@ -681,6 +703,7 @@ public class GUI extends JFrame {
         };
         // button 1
         JButton two = new JButton("2");
+        two.setBackground(yellow);
         two.addActionListener(twoListener);
         p.add(two);
 
@@ -693,6 +716,7 @@ public class GUI extends JFrame {
         };
         // button 1
         JButton three = new JButton("3");
+        three.setBackground(yellow);
         three.addActionListener(threeListener);
         p.add(three);
 
@@ -705,6 +729,8 @@ public class GUI extends JFrame {
         };
         // button 1
         JButton four = new JButton("4");
+        four.setOpaque(true);
+        four.setBackground(yellow);
         four.addActionListener(fourListener);
         p.add(four);
 
@@ -772,7 +798,7 @@ public class GUI extends JFrame {
                     JButton currentButton = buttonList.get(Integer);
                     // assign the colour of the current button to a runningiable called back
                     // currentButton.setOpaque(true);
-                    Color newColor = Color.MAGENTA.brighter().brighter();
+                    Color newColor = purple.brighter().brighter();
                     currentButton.setBackground(newColor);
                     // currentButton.setBorder(new LineBorder(Color.BLACK, 10));
                     // currentButton.setContentAreaFilled(false);
@@ -786,7 +812,7 @@ public class GUI extends JFrame {
                     }
                     // set colour to original colour
                     // currentButton.setBorder(new LineBorder(Color.BLACK, 1));
-                    currentButton.setBackground(Color.YELLOW);
+                    currentButton.setBackground(yellow);
                     // currentButton.setContentAreaFilled(true);
                     // update
                     repaint();
@@ -820,7 +846,7 @@ public class GUI extends JFrame {
                 // assign the colour of the current button to a runningiable called back
                 // currentButton.setContentAreaFilled(true);
                 currentButton.setOpaque(true);
-                Color newColor = Color.MAGENTA.brighter().brighter();
+                Color newColor = purple.brighter().brighter();
                 currentButton.setBackground(newColor);
                 // currentButton.setBorder(new LineBorder(Color.BLACK, 10));
                 // refresh
@@ -835,7 +861,7 @@ public class GUI extends JFrame {
                 // currentButton.setBorder(new LineBorder(Color.BLACK, 1));
                 // currentButton.setContentAreaFilled(false);
                 // currentButton.setBorder(new LineBorder(Color.BLACK, 0));
-                currentButton.setBackground(Color.YELLOW);
+                currentButton.setBackground(yellow);
                 // update
                 repaint();
             }
