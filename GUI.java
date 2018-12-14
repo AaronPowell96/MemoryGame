@@ -63,9 +63,11 @@ public class GUI extends JFrame {
                 while (running) {
 
                     level.setText("Current Level: " + game.returnlevel());
-                    level.setBackground(Color.WHITE);
+                     level.setOpaque(true);
+                    level.setBackground(Color.YELLOW);
+                    difficultyLabel.setOpaque(true);
                     difficultyLabel.setText("Difficulty: " + difficulty);
-                    difficultyLabel.setBackground(Color.WHITE);
+                    difficultyLabel.setBackground(Color.YELLOW);
                     if (game.win() == 0) {
                         // if level below zero, tell user they lost
                         game.setLevel(0);
@@ -110,13 +112,13 @@ public class GUI extends JFrame {
         int repeat = 5;
         if (game.returnlevel() < oldLevel) {
             for (int i = 0; i < repeat; i++) {
-                level.getParent().setBackground(Color.RED);
+                level.getParent().setBackground(Color.MAGENTA);
                 try {
                     Thread.sleep(150);
                 } catch (InterruptedException ex) {
                     Thread.currentThread().interrupt();
                 }
-                level.getParent().setBackground(Color.WHITE);
+                level.getParent().setBackground(Color.YELLOW);
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException ex) {
@@ -131,7 +133,7 @@ public class GUI extends JFrame {
                 } catch (InterruptedException ex) {
                     Thread.currentThread().interrupt();
                 }
-                level.getParent().setBackground(Color.WHITE);
+                level.getParent().setBackground(Color.YELLOW);
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException ex) {
@@ -177,7 +179,7 @@ public class GUI extends JFrame {
         for (JButton button : buttonList.values()) {
             button.setEnabled(false);
             button.setOpaque(true);
-            button.setBackground(Color.WHITE);
+            button.setBackground(Color.YELLOW);
             repaint();
         }
         int option = endGameOptions("You've Lost", "LOSER");
@@ -203,7 +205,7 @@ public class GUI extends JFrame {
         for (JButton button : buttonList.values()) {
             button.setEnabled(false);
             button.setOpaque(true);
-            button.setBackground(Color.YELLOW);
+            button.setBackground(Color.MAGENTA);
             repaint();
             try {
                 Thread.sleep(50);
@@ -221,7 +223,7 @@ public class GUI extends JFrame {
         for (JButton button : buttonList.values()) {
             button.setEnabled(false);
             button.setOpaque(true);
-            button.setBackground(Color.WHITE);
+            button.setBackground(Color.YELLOW);
             repaint();
         }
         int option = endGameOptions("You've Won!", "WINNER");
@@ -320,7 +322,7 @@ public class GUI extends JFrame {
      */
     private void startGame() {
         game.newGame();
-        frame = new JFrame("Remember - Main Menu");
+        frame = new JFrame("Remember Remember - Main Menu");
         // Creates the panel for the 3 JButtons
         JPanel p = new JPanel(new GridLayout(1, 3));
         Container contentPane = frame.getContentPane();
@@ -418,7 +420,7 @@ public class GUI extends JFrame {
      */
     private void makeFrame() {
         // creates the frame for the grid
-        gameFrame = new JFrame("Remember Remember");
+        gameFrame = new JFrame("Remember Remember Game");
 
         // Creates the panel used for 4 JButtons that will flash
         JPanel p = new JPanel(new GridLayout(1, 3));
@@ -449,10 +451,6 @@ public class GUI extends JFrame {
 
         // button 1
         one = new JButton();
-        // one.setContentAreaFilled(false);
-        // one.setOpaque(true);
-        // one.setColor(new Color(200,0,100));
-        one.setBackground(Color.WHITE);
         one.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // adds number referencing this button to an arrayList
@@ -466,8 +464,6 @@ public class GUI extends JFrame {
 
         // button 2
         two = new JButton();
-        // two.setContentAreaFilled(false);
-        two.setBackground(Color.WHITE);
         two.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // adds number referencing this button to an arrayList
@@ -481,8 +477,6 @@ public class GUI extends JFrame {
 
         // button 3
         three = new JButton();
-        // three.setContentAreaFilled(false);
-        three.setBackground(Color.WHITE);
         three.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // adds number referencing this button to an arrayList
@@ -496,8 +490,6 @@ public class GUI extends JFrame {
         if (difficulty == 2 || difficulty == 3 || difficulty == 4) {
             // button 4
             four = new JButton();
-            // four.setContentAreaFilled(false);
-            four.setBackground(Color.WHITE);
             four.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     // adds number referencing this button to an arrayList
@@ -510,8 +502,6 @@ public class GUI extends JFrame {
             p.add(four);
             // button 5
             five = new JButton();
-            // five.setContentAreaFilled(false);
-            five.setBackground(Color.WHITE);
             five.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     // adds number referencing this button to an arrayList
@@ -524,8 +514,6 @@ public class GUI extends JFrame {
             p.add(five);
             // button 6
             six = new JButton();
-            // six.setContentAreaFilled(false);
-            six.setBackground(Color.WHITE);
             six.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     // adds number referencing this button to an arrayList
@@ -541,8 +529,6 @@ public class GUI extends JFrame {
         if (difficulty == 3 || difficulty == 4) {
             // button 7
             seven = new JButton();
-            // seven.setContentAreaFilled(false);
-            seven.setBackground(Color.WHITE);
             seven.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     // adds number referencing this button to an arrayList
@@ -555,8 +541,6 @@ public class GUI extends JFrame {
             p.add(seven);
             // button 8
             eight = new JButton();
-            // eight.setContentAreaFilled(false);
-            eight.setBackground(Color.WHITE);
             eight.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     // adds number referencing this button to an arrayList
@@ -569,8 +553,6 @@ public class GUI extends JFrame {
             p.add(eight);
             // button 9
             nine = new JButton();
-            // nine.setContentAreaFilled(false);
-            nine.setBackground(Color.WHITE);
             nine.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     // adds number referencing this button to an arrayList
@@ -585,8 +567,6 @@ public class GUI extends JFrame {
         if (difficulty == 4) {
             // button 10
             ten = new JButton();
-            // ten.setContentAreaFilled(false);
-            ten.setBackground(Color.WHITE);
             ten.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     // adds number referencing this button to an arrayList
@@ -599,8 +579,6 @@ public class GUI extends JFrame {
             p.add(ten);
             // button 11
             eleven = new JButton();
-            // eleven.setContentAreaFilled(false);
-            eleven.setBackground(Color.WHITE);
             eleven.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     // adds number referencing this button to an arrayList
@@ -613,8 +591,6 @@ public class GUI extends JFrame {
             p.add(eleven);
             // button 7
             twelve = new JButton();
-            // twelve.setContentAreaFilled(false);
-            twelve.setBackground(Color.WHITE);
             twelve.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     // adds number referencing this button to an arrayList
@@ -632,7 +608,7 @@ public class GUI extends JFrame {
 
         // disable all the buttons in the buttonList
         for (JButton button : buttonList.values()) {
-            button.setBackground(Color.WHITE);
+            button.setBackground(Color.YELLOW);
             button.setEnabled(false);
         }
 
@@ -796,7 +772,7 @@ public class GUI extends JFrame {
                     JButton currentButton = buttonList.get(Integer);
                     // assign the colour of the current button to a runningiable called back
                     // currentButton.setOpaque(true);
-                    Color newColor = Color.RED.brighter().brighter();
+                    Color newColor = Color.MAGENTA.brighter().brighter();
                     currentButton.setBackground(newColor);
                     // currentButton.setBorder(new LineBorder(Color.BLACK, 10));
                     // currentButton.setContentAreaFilled(false);
@@ -810,7 +786,7 @@ public class GUI extends JFrame {
                     }
                     // set colour to original colour
                     // currentButton.setBorder(new LineBorder(Color.BLACK, 1));
-                    currentButton.setBackground(Color.WHITE);
+                    currentButton.setBackground(Color.YELLOW);
                     // currentButton.setContentAreaFilled(true);
                     // update
                     repaint();
@@ -844,7 +820,7 @@ public class GUI extends JFrame {
                 // assign the colour of the current button to a runningiable called back
                 // currentButton.setContentAreaFilled(true);
                 currentButton.setOpaque(true);
-                Color newColor = Color.RED.brighter().brighter();
+                Color newColor = Color.MAGENTA.brighter().brighter();
                 currentButton.setBackground(newColor);
                 // currentButton.setBorder(new LineBorder(Color.BLACK, 10));
                 // refresh
@@ -859,7 +835,7 @@ public class GUI extends JFrame {
                 // currentButton.setBorder(new LineBorder(Color.BLACK, 1));
                 // currentButton.setContentAreaFilled(false);
                 // currentButton.setBorder(new LineBorder(Color.BLACK, 0));
-                currentButton.setBackground(Color.WHITE);
+                currentButton.setBackground(Color.YELLOW);
                 // update
                 repaint();
             }
