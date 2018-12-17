@@ -55,7 +55,7 @@ public class Game {
     public int win() {
         if (level < 0) {
             return 0;
-        } else if (level == 5) {
+        } else if (level == 10) {
             return 1;
         } else {
             return 2;
