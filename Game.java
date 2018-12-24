@@ -2,7 +2,6 @@ import java.util.*;
 
 /**
  * Logic for the game, sequences, levels, comparing inputs and sequences.
- * 
  */
 public class Game {
     private int level;
@@ -21,13 +20,14 @@ public class Game {
         newGame();
     }
     /**
-    *Returns the current difficulty of the game
+     * Returns the current difficulty of the game.
      */
     public int getDifficulty() {
         return difficulty;
     }
     /**
-    sets the difficulty to the player chosen level
+     * Sets the difficulty to the specified difficulty.
+     * @param d The difficult to change to.
      */
     public void setDifficulty(int d) {
         difficulty = d;
@@ -49,7 +49,6 @@ public class Game {
 
     /**
      * Player win checker,
-     * 
      * returns 0 if they have lost, 1 if they have won.
      */
     public int win() {
@@ -62,15 +61,15 @@ public class Game {
         }
     }
     /**
-    Sets the current level of the game
+     * Sets the current level of the game to the specified level.
+     * @param i The level to change to.
      */
     public void setLevel(int i) {
         level = i;
     }
 
     /**
-     * Returns the challenge sequence
-     *
+     * Returns the challenge sequence.
      */
     public ArrayList<Integer> returnOriginalchallenge() {
         return challenge;
@@ -87,13 +86,13 @@ public class Game {
      * Sets level back to 0.
      */
     public void newGame() {
-        blinks();
         level = 0;
+        blinks();
     }
 
     /**
      * Checks to see the player has finished entering the challenge and calls
-     * another method to see if they have leveld
+     * another method to see if they have leveled.
      */
     public boolean finished() {
         if (playerInput.size() == challenge.size()) {
@@ -105,8 +104,7 @@ public class Game {
     }
 
     /**
-     * Checks to see the player has entered the challenge correctly
-     * 
+     * Checks to see the player has entered the challenge correctly.
      */
     private boolean compareList() {
         return challenge.toString().contentEquals(playerInput.toString()) ? true : false;
@@ -126,108 +124,18 @@ public class Game {
         }
     }
 
-    /*
-    *returns current level
+    /**
+     * Returns the current level.
      */
     public int returnlevel() {
         return level;
     }
 
     /**
-     * Switch amount of blinks based on level, blinks increment amount and default blinks are based on difficulty.
+     * Switch number of blinks based on level and difficulty.
+     * Number of blinks increases by difficulty every 3 levels.
      */
     private void blinks() {
-        switch (difficulty) {
-        case 1:
-            if (level <= 3) {
-                blinks = 3;
-            }
-            if (level > 3) {
-                blinks = 4;
-            }
-            if (level > 5) {
-                blinks = 5;
-            }
-            if (level > 7) {
-                blinks = 6;
-            }
-            break;
-        case 2:
-            if (level <= 3) {
-                blinks = 4;
-            }
-            if (level > 3) {
-                blinks = 6;
-            }
-            if (level > 5) {
-                blinks = 7;
-            }
-            if (level > 6) {
-                blinks = 10;
-            }
-            break;
-        case 3:
-            if (level <= 3) {
-                blinks = 5;
-            }
-            if (level > 3) {
-                blinks = 7;
-            }
-            if (level > 5) {
-                blinks = 9;
-            }
-            if (level > 7) {
-                blinks = 11;
-            }
-            if (level > 8) {
-                blinks = 14;
-            }
-            break;
-        case 4:
-            if (level <= 3) {
-                blinks = 6;
-            }
-            if (level > 3) {
-                blinks = 8;
-            }
-            if (level > 5) {
-                blinks = 10;
-            }
-            if (level > 7) {
-                blinks = 15;
-            }
-            if (level > 9) {
-                blinks = 20;
-            }
-            break;
-        default:
-            blinks = 1;
-            break;
-        }
-        /*
-         * if(difficulty == 1) { if (level <= 3) { blinks = 3; } if(level > 3) { blinks
-         * = 4; }
-         * 
-         * if(level > 5) { blinks = 5; }
-         * 
-         * if(level > 7) { blinks = 6; } }
-         * 
-         * if(difficulty == 2) { if (level <= 3) { blinks = 4; } if(level > 3) { blinks
-         * = 6; }
-         * 
-         * if(level > 5) { blinks = 7; }
-         * 
-         * if(level > 6) { blinks = 10; } } if(difficulty == 3) { if (level <= 3) {
-         * blinks = 5; } if(level > 3) { blinks = 7; }
-         * 
-         * if(level > 5) { blinks = 9; }
-         * 
-         * if(level > 7) { blinks = 11; } if(level > 8) { blinks = 14; } } if(difficulty
-         * == 4) { if (level <= 3) { blinks = 6; } if(level > 3) { blinks = 8; }
-         * 
-         * if(level > 5) { blinks = 10; }
-         * 
-         * if(level > 7) { blinks = 15; } if(level > 9) { blinks = 20; } }
-         */
+        blinks = difficulty + level / (5 - difficulty);
     }
 }
